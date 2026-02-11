@@ -1,18 +1,22 @@
-// Variable declarada pero nunca usada (Provoca advertencia/error de ESLint)
-const apiSecretKey = "12345-DEBUG-ONLY"; 
+// Base de datos local sencilla para simular un sistema transaccional
+const db = {
+  mario: "Habilidad: Salto Pro. Mundo: Mushroom Kingdom.",
+  link: "Habilidad: Maestro de la Espada. Mundo: Hyrule.",
+  samus: "Habilidad: Disparo de Plasma. Mundo: Zebes."
+};
 
 const btnSearch = document.getElementById('btnSearch');
 const inputField = document.getElementById('characterInput');
 const resultArea = document.getElementById('resultArea');
 
 btnSearch.addEventListener('click', () => {
-  // ERROR DE DEDO: 'queryValue' no está definida, la variable real es 'query'
   const query = inputField.value.toLowerCase().trim();
   
-  // Aquí provocamos el fallo fatal: usamos una variable inexistente
-  if (db[queryValue]) { 
-    resultArea.innerHTML = `<h2>Encontrado</h2>`;
+  if (db[query]) {
+    resultArea.innerHTML = `<h2>${query.toUpperCase()}</h2><p>${db[query]}</p>`;
+    resultArea.style.borderColor = "#4ecca3"; // Cambia a verde si lo encuentra
   } else {
-    resultArea.innerHTML = `<p>No encontrado</p>`;
+    resultArea.innerHTML = `<p>Error 404: Personaje no encontrado en la base de datos.</p>`;
+    resultArea.style.borderColor = "#e94560"; // Rojo si falla
   }
 });
