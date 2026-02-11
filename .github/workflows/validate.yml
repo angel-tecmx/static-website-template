@@ -18,11 +18,11 @@ jobs:
           npm install -g htmlhint
           htmlhint "**/*.html" --rules "tag-pair=true,id-unique=true,src-not-empty=true,attr-value-not-empty=true,doctype-first=true,tag-self-close=false,spec-char-escape=false"
 
-      # 3. ESLint: Detecta errores de lógica y sintaxis en JS
+      # 3. ESLint: Validando errores reales de JS
       - name: Validador de JavaScript (ESLint)
         run: |
           npm install -g eslint
-          npx eslint "**/*.js" --no-eslintrc --rule 'no-undef: error' --rule 'no-unused-vars: warn' --allow-empty-files || true
+          npx eslint "**/*.js" --no-config-lookup --rule 'no-undef: error' --rule 'no-unused-vars: error'
 
   deploy:
     needs: quality-check
