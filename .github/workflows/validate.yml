@@ -24,7 +24,7 @@ jobs:
           npm install -g eslint
           npx eslint "**/*.js" --no-eslintrc --rule 'no-undef: error' --rule 'no-unused-vars: warn' --allow-empty-files || true
 
-deploy:
+  deploy:
     needs: quality-check
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
