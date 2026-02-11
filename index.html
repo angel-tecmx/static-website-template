@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" href="/favicon.png" />
-    <title>This is my first project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameDex - Buscador de Héroes</title>
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to my first project!</h1>
-    </header>    
+
+  <header>
+    <h1>GameDex 🎮</h1>
+    <p>Busca a tu héroe favorito para la batalla.</p>
+  </header>
+
+  <main>
+    <section class="search-container">
+      <input type="text" id="characterInput" placeholder="Escribe: Mario, Link, Samus..." aria-label="Nombre del personaje" />
+      <button id="btnSearch">Buscar</button>
+    </section>
+
+    <article id="resultArea" class="result-card">
+      <p id="message">Elige un personaje para ver sus stats.</p>
+    </article>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
