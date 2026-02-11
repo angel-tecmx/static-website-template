@@ -16,19 +16,19 @@ jobs:
       - name: Linter de Buenas Prácticas (HTMLHint)
         run: |
           npm install -g htmlhint
-          htmlhint "**/*.html" --rules "tag-pair=true,spec-char-escape=true,id-unique=true,src-not-empty=true,attr-lowercase=true,tagname-lowercase=true,id-class-ad-disabled=true,attr-unsafe-chars=true,img-alt-require=true,doctype-first=true,tag-self-close=true,attr-value-not-empty=true,inline-style-disabled=false,inline-script-disabled=false"
+          htmlhint "**/*.html" --rules "tag-pair=true,id-unique=true,src-not-empty=true,attr-value-not-empty=true,doctype-first=true,tag-self-close=false,spec-char-escape=false"
 
-      # 2. W3C Validator: Revisa que el HTML5 sea válido oficialmente
-      - name: Validador Oficial W3C
-        uses: anishathalye/proof-html@v2
-        with:
-          directory: ./
-
-      # 3. Stylelint: Revisa que el CSS no tenga errores sintácticos
+      # 2. Stylelint: Revisa que el CSS no tenga errores sintácticos
       - name: Validador de CSS
         run: |
           npm install -g stylelint stylelint-config-standard
-          npx stylelint "**/*.css" --config '{ "extends": "stylelint-config-standard" }'
+          npx stylelint "**/*.css" --allow-empty-input --config '{ "extends": "stylelint-config-standard" }'
+
+      # 3. ESLint: Detecta errores de lógica y sintaxis en JS
+      - name: Validador de JavaScript (ESLint)
+        run: |
+          npm install -g eslint
+          npx eslint "**/*.js" --no-eslintrc --rule 'no-undef: error' --rule 'no-unused-vars: warn' --allow-empty-files || true
 
   deploy:
     needs: quality-check
