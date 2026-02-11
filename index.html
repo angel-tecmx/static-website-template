@@ -4,40 +4,44 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Panel de administración para la gestión de personajes de videojuegos." />
+    <meta name="description" content="" />
     <title>GameDex - Master Admin</title>
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
+    <link rel="icon" href="" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+<body>
 
     <header>
         <h1 id="main-title">Control de Misión 🎮</h1>
-        <p class="subtitle">Sistemas Transaccionales Activos</p>
+        <p id="main-title" class="subtitle">Sistemas Transaccionales Activos</p>
     </header>
 
     <main>
-        <section class="search-box">
-            <label for="characterInput">Nombre del Héroe:</label>
+        <section class=""> <label for=" character Input ">Nombre del Héroe:</label>
             <input type="text" id="characterInput" placeholder="Ej: Mario" />
-            <button type="button" id="btnSearch">Buscar</button>
+            
+            <a href="search.html">
+                <button type="button" id="btnSearch">Buscar</button>
+            </a>
         </section>
 
         <article class="data-display">
             <h2>Panel de Resultados</h2>
-            <img src="images/image.png" alt="Avatar del personaje seleccionado" width="100" height="100" />
+            <img src="" width="100" height="100">
 
             <div class="stats-grid">
-                <p>Estadísticas del Servidor:</p>
-                <ul>
-                    <li>Latencia: 20ms</li>
-                    <li>Estado: Online</li>
-                </ul>
+                <p>Estadísticas del Servidor:
+                    <ul>
+                        <li>Latencia: 20ms</li>
+                        <li>Estado: Online
+                    </ul>
+                </p>
             </div>
         </article>
-        <article id="resultArea" class="result-card">
+        
+        <article id="characterInput" class="result-card">
             <p id="message">Elige un personaje para ver sus stats.</p>
         </article>
     </main>
@@ -45,10 +49,9 @@
     <footer>
         <div id="footer-data">
             <p>&copy; 2026 GameDex Corp - Cloud Ready</p>
+            </div>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js">
 </body>
-
-</html>
