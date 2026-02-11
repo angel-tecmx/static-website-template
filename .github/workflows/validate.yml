@@ -22,7 +22,7 @@ jobs:
       - name: Validador de JavaScript (ESLint)
         run: |
           npm install -g eslint
-          npx eslint "**/*.js" --no-config-lookup --rule 'no-undef: error' --rule 'no-unused-vars: error'
+          npx eslint "**/*.js" --no-config-lookup --env browser --rule 'no-undef: error' --rule 'no-unused-vars: error'
 
   deploy:
     needs: quality-check
