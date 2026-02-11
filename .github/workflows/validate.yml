@@ -1,0 +1,43 @@
+name: Pipeline Estándar Profesional
+on: [push]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. HTMLHint: Revisa accesibilidad y etiquetas obsoletas
+      - name: Linter de Buenas Prácticas (HTMLHint)
+        run: |
+          npm install -g htmlhint
+          htmlhint "**/*.html" --rules "tag-pair=true,spec-char-escape=true,id-unique=true,src-not-empty=true,attr-lowercase=true,tagname-lowercase=true,id-class-ad-disabled=true,attr-unsafe-chars=true,img-alt-require=true,doctype-first=true,tag-self-close=true,attr-value-not-empty=true,inline-style-disabled=false,inline-script-disabled=false"
+
+      # 2. W3C Validator: Revisa que el HTML5 sea válido oficialmente
+      - name: Validador Oficial W3C
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./
+
+      # 3. Stylelint: Revisa que el CSS no tenga errores sintácticos
+      - name: Validador de CSS
+        run: |
+          npm install -g stylelint stylelint-config-standard
+          npx stylelint "**/*.css" --config '{ "extends": "stylelint-config-standard" }'
+
+  deploy:
+    needs: quality-check
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
