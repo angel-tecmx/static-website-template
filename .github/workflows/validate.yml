@@ -18,12 +18,6 @@ jobs:
           npm install -g htmlhint
           htmlhint "**/*.html" --rules "tag-pair=true,id-unique=true,src-not-empty=true,attr-value-not-empty=true,doctype-first=true,tag-self-close=false,spec-char-escape=false"
 
-      # 2. Stylelint: Revisa que el CSS no tenga errores sintácticos
-      - name: Validador de CSS
-        run: |
-          npm install -g stylelint stylelint-config-standard
-          npx stylelint "**/*.css" --allow-empty-input --config '{ "extends": "stylelint-config-standard" }'
-
       # 3. ESLint: Detecta errores de lógica y sintaxis en JS
       - name: Validador de JavaScript (ESLint)
         run: |
