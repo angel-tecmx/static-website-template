@@ -22,7 +22,9 @@ jobs:
       - name: Validador de JavaScript (ESLint)
         run: |
           npm install -g eslint
-          npx eslint "**/*.js" --no-config-lookup --env browser --rule 'no-undef: error' --rule 'no-unused-vars: error'
+          # Creamos una configuración mínima temporal para que reconozca el navegador
+          echo 'export default [{ languageOptions: { globals: { document: "readonly", window: "readonly", console: "readonly" } }, rules: { "no-undef": "error", "no-unused-vars": "error" } }];' > eslint.config.js
+          npx eslint "**/*.js"
 
   deploy:
     needs: quality-check
